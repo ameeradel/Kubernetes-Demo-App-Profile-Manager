@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp-deplyoment
+  name: webapp-deployment
   labels:
     app: webapp
 spec:
@@ -31,7 +31,7 @@ spec:
               name: mongo-secret
               key: mongo-password  
         - name: DB_URL
-          valuefrom:
+          valueFrom:
             configMapKeyRef:
               name: mongo-config
               key: mongo-url
@@ -44,11 +44,11 @@ kind: Service
 metadata:
   name: webapp-service
 spec:
-type: NodePort
+  type: NodePort
   selector:
     app: webapp
   ports:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-      nodePort: 30000
+      nodePort: 30100
